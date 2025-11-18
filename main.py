@@ -1,6 +1,6 @@
 
-
-
+rent = "Y"
+metric_imperial = 0
 busan_distance = 390
 busan_time = 4
 Gwangju_distance = 310
@@ -10,6 +10,25 @@ Daegu_time = 3
 
 cars = ["Ford Model T", "Tesla Model Y", "BYD U9X"]
 car_speeds = [60, 217, 417]
+
+def byd():
+  print("The BYD U9X is a modern car with a top speed of 417 km/h")
+  rent = input("would you like to rent this car? (y/n):")
+if rent.lower() == "y":
+        print("You have chosen the BYD U9X")
+else:
+        print("You have chosen to not rent the BYD U9X")
+        print("Would you like to rent the Tesla Model Y or the Ford Model T?")
+       
+def tesla():
+  print("The Tesla Model Y is a electric car with a top speed of 217km/h")
+  rent = input("would you like to rent this car? (y/n):")
+if rent.lower() == "y":
+        print("You have chosen the Tesla Model Y")
+else:
+        print("You have chosen to not rent the Tesla Model Y")
+        print("Would you like to rent the BYD U9X or the Ford Model T?")
+
 
 
 def rent_car ():
@@ -26,21 +45,27 @@ def rent_car ():
      print("You have chosen the Ford Model T")
      print()
      print("The Ford Model T is a classic car with a top speed of 60km/h ")
+     
      question = input("Firstly, how long do you plan to travel to reach there (in hours):  ")
      print("You plan to travel for " , question , " hours.")
      print()
+     travel_time = distance / car_speeds[0]
+     metric_imperial = input("Would you like this in seconds or hours (s/h): ")
+     if metric_imperial.lower() == "s":
+      print("Based on the Ford Model T's max speed, it will take about", round(travel_time, 1), "hours to reach your destination.")
+     print()
+     print()
      print("A better option would be the " , cars[1] , " or " , cars[2] , " for more speed and comfort.")
      print()
-     change = input("Would like to rent BYD U9X (y/n): ")
-     if change.lower() == "y":
-       print("You have upgraded to the " + cars[2] )   
+     change = input("Would like to rent BYD U9X or the Tesla Model Y (Type in Tesla or BYD): ")
+     if change.lower() == "byd":
+       print("You have upgraded to the " + cars[2] )
 
-     
+     elif change.lower() == "tesla":   
+        print("You have upgraded to the " + cars[1])
+     else:
+        print("You decided to keep the " + cars[0])
         
-
-             
-     
-     
 
   elif car == "2":
      print("You have chosen the Tesla Model Y")
@@ -49,9 +74,13 @@ def rent_car ():
      question = input("Firstly, how long do you plan to travel to reach there (in hours):  ")
      print("You plan to travel for " , question ," hours.")
      print()
+     travel_time = distance / car_speeds[1]
+     print("Based on the Tesla Model Y's max speed, it will take about", round(travel_time, 1), "hours to reach your destination.")
+     print()
+     print()
      print("A better option would be the " , cars[2] , " for more speed .")
-     change = input("Would like to rent another car? (y/n): ")
-     if change.lower() == "yes":
+     change = input("Would like to rent BYD? (y/n): ")
+     if change.lower() == "y":
          print("You have upgraded to the " + cars[2])
      else:
        print("You decided to keep the " + cars[1])
@@ -63,15 +92,18 @@ def rent_car ():
      print()
      print("The BYD U9X is a modern car with a top speed of 417 km/h ")
      question = input("Firstly, how long do you plan to travel to reach there (in hours):  ")
-     print('You plan to travel for ', question , ' hours.')
+     print('Your plan to travel for ', question , ' hours.')
+     print()
+     travel_time = distance / car_speeds[2]
+     print("Based on the BYD U9X's max speed, it will take about", round(travel_time, 1), "hours to reach your destination.")
+     print()
      print()
      print("This is the best option for you ")
-   
-     
-     
 
-   
-   
+
+
+
+
 
 print("Hello Welcome to our rental car company HERTZ.")
 print()
@@ -86,12 +118,15 @@ destination = input("Enter the number of your destination: ")
 print()
 if destination == "1": 
    print("The distance from Seoul to Busan is approximately " + str(busan_distance) + " km and will take you around " + str(busan_time) + " hours to reach Busan")
+   distance = busan_distance
 elif destination == "2":
    print("The distance from Seoul to Gwangju is approximately " + str(Gwangju_distance) + " km and will take you around " + str(Gwangju_time) + " hours to reach Gwangju")
+   distance = Gwangju_distance
 elif destination == "3":
    print("The distance from Seoul to Daegu is approximately " + str(Daegu_distance) + " km and will take you around " + str(Daegu_time) + " hours to reach Daegu")
+   distance = Daegu_distance
 else:
-   print("Invalid destination choice.")
-   
+   distance = 0
+
 chosen_car = rent_car()
 
