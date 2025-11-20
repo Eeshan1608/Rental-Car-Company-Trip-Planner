@@ -1,4 +1,3 @@
-
 rent = "Y"
 metric_imperial = 0
 busan_distance = 390
@@ -7,25 +6,27 @@ Gwangju_distance = 310
 Gwangju_time = 3
 Daegu_distance = 280
 Daegu_time = 3
-
+fuel_efficiency = 0
+fuel_price = 0
 cars = ["Ford Model T", "Tesla Model Y", "BYD U9X"]
 car_speeds = [60, 217, 417]
+car_efficiency = [9,8,6]
 
-def byd():
-  print("The BYD U9X is a modern car with a top speed of 417 km/h")
-  rent = input("would you like to rent this car? (y/n):")
-if rent.lower() == "y":
+def byd(rent):
+   print("The BYD U9X is a modern car with a top speed of 417 km/h")
+   rent = input("would you like to rent this car? (y/n):")
+   if rent.lower() == "y":
         print("You have chosen the BYD U9X")
-else:
+   else:
         print("You have chosen to not rent the BYD U9X")
         print("Would you like to rent the Tesla Model Y or the Ford Model T?")
        
-def tesla():
-  print("The Tesla Model Y is a electric car with a top speed of 217km/h")
-  rent = input("would you like to rent this car? (y/n):")
-if rent.lower() == "y":
+def tesla(rent):
+   print("The Tesla Model Y is a electric car with a top speed of 217km/h")
+   rent = input("would you like to rent this car? (y/n):")
+   if rent.lower() == "y":
         print("You have chosen the Tesla Model Y")
-else:
+   else:
         print("You have chosen to not rent the Tesla Model Y")
         print("Would you like to rent the BYD U9X or the Ford Model T?")
 
@@ -45,24 +46,23 @@ def rent_car ():
      print("You have chosen the Ford Model T")
      print()
      print("The Ford Model T is a classic car with a top speed of 60km/h ")
-     
+     print()
      question = input("Firstly, how long do you plan to travel to reach there (in hours):  ")
      print("You plan to travel for " , question , " hours.")
      print()
      travel_time = distance / car_speeds[0]
-     metric_imperial = input("Would you like this in seconds or hours (s/h): ")
-     if metric_imperial.lower() == "s":
-      print("Based on the Ford Model T's max speed, it will take about", round(travel_time, 1), "hours to reach your destination.")
+     print("Based on the Ford Model T's max speed, it will take about", round(travel_time, 1), "hours to reach your destination.")
      print()
      print()
      print("A better option would be the " , cars[1] , " or " , cars[2] , " for more speed and comfort.")
      print()
      change = input("Would like to rent BYD U9X or the Tesla Model Y (Type in Tesla or BYD): ")
      if change.lower() == "byd":
-       print("You have upgraded to the " + cars[2] )
-
+        print("You have upgraded to the " + cars[2] )
+        byd(rent)
      elif change.lower() == "tesla":   
         print("You have upgraded to the " + cars[1])
+        tesla(rent)
      else:
         print("You decided to keep the " + cars[0])
         
@@ -82,6 +82,7 @@ def rent_car ():
      change = input("Would like to rent BYD? (y/n): ")
      if change.lower() == "y":
          print("You have upgraded to the " + cars[2])
+         byd(rent)
      else:
        print("You decided to keep the " + cars[1])
 
@@ -100,11 +101,32 @@ def rent_car ():
      print()
      print("This is the best option for you ")
 
+def fuelcost():
+   global cars, fuel_efficiency
+   fuel_price = int(input("What is the fuel price in won per liter: "))
+   print("The fuel price is ", fuel_price, "won per liter")
+   
+   if cars == "1":
+      fuelefficency = car_efficiency[0]
+      fuelcost = (distance / fuelefficency)*fuel_price
+      print("The fuel cost for the Ford Model T is ", fuelcost)
+
+   elif cars == "2":
+      fuelefficency = car_efficiency[1]
+      fuelcost = (distance / fuelefficency)*fuel_price
+      print("The fuel cost for the Tesla Model Y is ", fuelcost)
+
+   elif cars == "3":
+      fuelefficency = car_efficiency[2]
+      fuelcost = (distance / fuelefficency)
+      print("The fuel cost for the BYD U9X is ", fuelcost)
+      
+      
+      
 
 
 
-
-
+fuelcost()
 print("Hello Welcome to our rental car company HERTZ.")
 print()
 print()
